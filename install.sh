@@ -4,12 +4,16 @@ exists () {
     command -v $1 > /dev/null 2>&1
 }
 
+exitWithError () {
+    echo $1
+    exit 1
+}
+
 checkRepo () {
     if [[ $1 == 200 ]]; then
         return 0
     else
-        echo "$user/$repo repository not found"
-        exit 1
+        exitWithError "$user/$repo repository not found"
     fi
 }
 
@@ -35,12 +39,11 @@ if [[ $# -eq 2 || $# -eq 3 ]]; then
             unzip $branch.zip
         fi
     else
-        echo "curl or wget command not found"
-        exit 127
+        exitWithError "curl or wget command not found"
     fi
 
     cd $repo-$branch
     /bin/bash setup.sh
 else
-	echo "args error"
+	exitWithError "Wrong number of args"
 fi
