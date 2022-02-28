@@ -26,13 +26,13 @@ if [[ $# -eq 2 || $# -eq 3 ]]; then
     dirname=$repo-$branch
 
     if exists curl; then
-        curlResponse=$(wget $reposUrl -SO /dev/null 2>&1 | awk '/^  HTTP/{printf $2}')
-
+        curlResponse=$(curl -so /dev/null -w '%{http_code}' $reposUrl)
+        
         if checkRepo $curlResponse; then
             curl -JLO $archiveUrl
         fi
     elif exists wget; then
-        wgetResponse=$(curl -so /dev/null -w '%{http_code}' $reposUrl)
+        wgetResponse=$(wget $reposUrl -SO /dev/null 2>&1 | awk '/^  HTTP/{printf $2}')
 
         if checkRepo $wgetResponse; then
             wget $archiveUrl

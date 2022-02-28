@@ -25,16 +25,16 @@ if [[ $# -eq 2 || $# -eq 3 ]]; then
     reposUrl="https://api.github.com/repos/$user/$repo"
 
     if exists curl; then
-        curlResponse=$(wget $reposUrl -SO /dev/null 2>&1 | awk '/^  HTTP/{printf $2}')
+        curlResponse=$(curl -so /dev/null -w '%{http_code}' $reposUrl)
 
         if checkRepo $curlResponse; then
-            /bin/bash <(wget -qO- $rawUrl) -r
+            /bin/bash <(curl -fsSL $rawUrl) -r
         fi
     elif exists wget; then
-        wgetResponse=$(curl -so /dev/null -w '%{http_code}' $reposUrl)
-
+        wgetResponse=$(wget $reposUrl -SO /dev/null 2>&1 | awk '/^  HTTP/{printf $2}')
+        
         if checkRepo $wgetResponse; then
-            /bin/bash <(curl -fsSL $rawUrl) -r
+            /bin/bash <(wget -qO- $rawUrl) -r
         fi
     else
         exitWithError "curl or wget command not found"
