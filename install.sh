@@ -17,10 +17,12 @@ checkRepo () {
     fi
 }
 
-if [[ $# -eq 2 || $# -eq 3 ]]; then
+removeParam=$([[ ${@: -1} == "-r" || ${@: -1} == "--remove" ]] && echo true || echo false)
+
+if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; then
     user=$1
     repo=$2
-    [[ $# -eq 3 ]] && branch=$3 || branch="master"
+    [[ $# -eq 3 && $removeParam == false ]] && branch=$3 || branch="master"
     archiveUrl="https://github.com/$user/$repo/archive/$branch.zip"
     reposUrl="https://api.github.com/repos/$user/$repo"
     dirname=$repo-$branch
@@ -46,7 +48,11 @@ if [[ $# -eq 2 || $# -eq 3 ]]; then
     rm $dirname.zip
     cd $repo-$branch
 
-    /bin/bash setup.sh
+    if [[ $removeParam == false ]]; then
+        /bin/bash setup.sh
+    else
+        /bin/bash setup.sh -r
+    fi
 else
 	exitWithError "Wrong number of args"
 fi
