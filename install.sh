@@ -50,8 +50,12 @@ if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; the
 
     if [[ $removeParam == false ]]; then
         /bin/bash setup.sh
+        
+        echo "$repo installed successfully"
     else
         /bin/bash setup.sh -r
+
+        echo "$repo uninstalled successfully"
     fi
 else
 	exitWithError "Wrong number of args"
