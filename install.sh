@@ -57,6 +57,9 @@ if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; the
 
         echo "$repo uninstalled successfully"
     fi
+
+    cd ..
+    rm -r $repo-$branch
 else
 	exitWithError "Wrong number of args"
 fi
