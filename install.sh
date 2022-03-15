@@ -49,13 +49,21 @@ if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; the
     cd $repo-$branch
 
     if [[ $removeParam == false ]]; then
-        /bin/bash setup.sh
-        
-        echo "$repo installed successfully"
+        if /bin/bash setup.sh; then
+            echo "$repo installed successfully"
+        else
+            cd ..
+            rm -r $repo-$branch
+            exitWithError "Installation encountered an error"
+        fi
     else
-        /bin/bash setup.sh -r
-
-        echo "$repo uninstalled successfully"
+        if /bin/bash setup.sh -r; then
+            echo "$repo uninstalled successfully"
+        else
+            cd ..
+            rm -r $repo-$branch
+            exitWithError "Uninstallation encountered an error"
+        fi
     fi
 
     cd ..
