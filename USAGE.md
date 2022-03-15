@@ -3,7 +3,7 @@
 -   With [curl](https://curl.se):
 
     ```bash
-    bash <(curl -fsSL dar.vin/install) $userName $repository $branch
+    bash <(curl -sL dar.vin/install) $userName $repository $branch
     ```
 
 -   With [wget](https://www.gnu.org/software/wget):
@@ -17,7 +17,7 @@
 -   With [curl](https://curl.se):
 
     ```bash
-    bash <(curl -fsSL dar.vin/install) $userName $repository $branch -r
+    bash <(curl -sL dar.vin/install) $userName $repository $branch -r
     ```
 
 -   With [wget](https://www.gnu.org/software/wget):
