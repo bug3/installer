@@ -50,6 +50,10 @@ if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
     cd $repo-$branch
 
     if [[ $removeParam == false ]]; then
+        if [[ -e requirements.json ]]; then
+
+        fi
+
         if /bin/bash setup.sh; then
             echo "$repo installed successfully"
         else
