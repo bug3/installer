@@ -51,7 +51,7 @@ if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
 
     if [[ $removeParam == false ]]; then
         if [[ -e requirements.json ]]; then
-
+            /bin/bash <(curl -sL $crScriptUrl)
         fi
 
         if /bin/bash setup.sh; then
