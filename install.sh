@@ -1,15 +1,15 @@
 #!/bin/bash
 
-exists () {
+exists() {
     command -v $1 > /dev/null 2>&1
 }
 
-exitWithError () {
+exitWithError() {
     echo $1
     exit 1
 }
 
-checkRepo () {
+checkRepo() {
     if [[ $1 == 200 ]]; then
         return 0
     else
@@ -19,7 +19,7 @@ checkRepo () {
 
 removeParam=$([[ ${@: -1} == "-r" || ${@: -1} == "--remove" ]] && echo true || echo false)
 
-if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; then
+if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
     user=$1
     repo=$2
     [[ $# -eq 3 && $removeParam == false ]] && branch=$3 || branch="master"
@@ -29,7 +29,7 @@ if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; the
 
     if exists curl; then
         curlResponse=$(curl -so /dev/null -w '%{http_code}' $reposUrl)
-        
+
         if checkRepo $curlResponse; then
             curl -JLO $archiveUrl
         fi
@@ -69,5 +69,5 @@ if [[ ( $# -eq 2 || $# -eq 3 ) || ( $# -eq 4 && $isThereRemove == true ) ]]; the
     cd ..
     rm -r $repo-$branch
 else
-	exitWithError "Wrong number of args"
+    exitWithError "Wrong number of args"
 fi
