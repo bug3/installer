@@ -25,6 +25,7 @@ if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
     [[ $# -eq 3 && $removeParam == false ]] && branch=$3 || branch="master"
     archiveUrl="https://github.com/$user/$repo/archive/$branch.zip"
     reposUrl="https://api.github.com/repos/$user/$repo"
+    crScriptUrl="https://raw.githubusercontent.com/bug3/installer/master/check-requirements.sh"
     dirname=$repo-$branch
 
     if exists curl; then
