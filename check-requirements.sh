@@ -5,10 +5,10 @@ url="https://raw.githubusercontent.com/bug3/installer/master/getpm.sh"
 pm=$(bash <(curl -sL $url))
 
 checkInstall() {
-    sudo $pm install -y $(jq -r ['.linux[]','keys[1:][]'][] $file)
+    sudo $pm install -y $(echo $1 | jq -r ['.linux[]','keys[1:][]'][])
 
-    for p in $(jq -r keys[1:][] $file); do
-        values="jq -r '.\"$p\"[]' requirements.json"
+    for p in $(echo $1 | jq -r keys[1:][]); do
+        values="echo $1 | jq -r '.\"$p\"[]'"
 
         case $p in
             npm)
@@ -28,3 +28,5 @@ checkInstall() {
         echo ""
     done
 }
+
+checkInstall "$(cat $file)"
