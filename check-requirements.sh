@@ -30,4 +30,5 @@ checkInstall() {
     done
 }
 
+checkInstall "$(cat <(curl -sL $reqUrl))"
 checkInstall "$(cat $file)"
