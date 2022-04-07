@@ -1,8 +1,9 @@
 #!/bin/bash
 
 file="requirements.json"
-url="https://raw.githubusercontent.com/bug3/installer/master/getpm.sh"
-pm=$(bash <(curl -sL $url))
+getpmUrl="https://raw.githubusercontent.com/bug3/installer/master/getpm.sh"
+reqUrl="https://raw.githubusercontent.com/bug3/installer/master/requirements.json"
+pm=$(bash <(curl -sL $getpmUrl))
 
 checkInstall() {
     sudo $pm install -y $(echo $1 | jq -r ['.linux[]','keys[1:][]'][])
