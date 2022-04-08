@@ -6,10 +6,12 @@ reqUrl="https://raw.githubusercontent.com/bug3/installer/master/requirements.jso
 pm=$(bash <(curl -sL $getpmUrl))
 
 checkInstall() {
-    sudo $pm install -y $(echo $1 | jq -r ['.linux[]','keys[1:][]'][])
+    req=$1
 
-    for p in $(echo $1 | jq -r keys[1:][]); do
-        values="echo $1 | jq -r '.\"$p\"[]'"
+    sudo $pm install -y $(echo $req | jq -r ['.linux[]','keys[1:][]'][])
+
+    for p in $(echo $req | jq -r keys[1:][]); do
+        values="echo \$req | jq -r '.\"$p\"[]'"
 
         case $p in
             npm)
