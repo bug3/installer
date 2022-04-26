@@ -15,7 +15,7 @@ New-Module -name Installer -scriptblock {
 
         if ($statusCode -eq 200) {
             Invoke-WebRequest $archiveUrl -OutFile $zipFile
-            Expand-Archive -Path $zipFile -DestinationPath .
+            Expand-Archive -Path $zipFile -DestinationPath . -Force
             Set-Location $project
             .\setup.bat
             Set-Location ..
