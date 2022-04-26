@@ -14,7 +14,12 @@ New-Module -name Installer -scriptblock {
         $statusCode = Invoke-WebRequest $reposUrl | Select-Object -Expand StatusCode
 
         if ($statusCode -eq 200) {
-
+            Invoke-WebRequest $archiveUrl -OutFile $zipFile
+            Expand-Archive -Path $zipFile -DestinationPath .
+            Set-Location $project
+            .\setup.bat
+            Set-Location ..
+            Remove-Item $zipFile, $project
         }
         else {
             Write-Error "$user/$repo repository not found"
