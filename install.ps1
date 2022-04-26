@@ -12,6 +12,13 @@ New-Module -name Installer -scriptblock {
         $reposUrl = "https://api.github.com/repos/$user/$repo"
         $archiveUrl = "https://github.com/$user/$repo/archive/$branch.zip"
         $statusCode = Invoke-WebRequest $reposUrl | Select-Object -Expand StatusCode
+
+        if ($statusCode -eq 200) {
+
+        }
+        else {
+            Write-Error "$user/$repo repository not found"
+        }
     }
     
     Export-ModuleMember -function "install"
