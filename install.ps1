@@ -19,7 +19,7 @@ New-Module -name Installer -scriptblock {
             Set-Location $project
             .\setup.bat
             Set-Location ..
-            Remove-Item $zipFile, $project
+            Remove-Item $zipFile, $project -Recurse
         }
         else {
             Write-Error "$user/$repo repository not found"
