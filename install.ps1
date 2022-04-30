@@ -22,7 +22,7 @@ New-Module -name Installer -scriptblock {
                 Start-Process .\setup.bat -Wait -NoNewWindow
             }
             else {
-                .\setup.bat -r
+                Start-Process .\setup.bat -ArgumentList "-r" -Wait -NoNewWindow
             }
 
             Set-Location ..
