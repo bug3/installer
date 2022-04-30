@@ -17,7 +17,14 @@ New-Module -name Installer -scriptblock {
             Invoke-WebRequest $archiveUrl -OutFile $zipFile
             Expand-Archive -Path $zipFile -DestinationPath . -Force
             Set-Location $project
-            & .\setup.bat
+
+            if ($remove -eq $false) {
+                .\setup.bat
+            }
+            else {
+                .\setup.bat -r
+            }
+
             Set-Location ..
             Remove-Item $zipFile, $project -Recurse
         }
