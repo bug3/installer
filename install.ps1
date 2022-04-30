@@ -19,7 +19,7 @@ New-Module -name Installer -scriptblock {
             Set-Location $project
 
             if ($remove -eq $false) {
-                .\setup.bat
+                Start-Process .\setup.bat -Wait -NoNewWindow
             }
             else {
                 .\setup.bat -r
