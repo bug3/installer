@@ -1,5 +1,5 @@
 New-Module -name Installer -scriptblock {
-    function install() {
+    function w() {
         param (
             [Parameter(Mandatory = $true)] $user,
             [Parameter(Mandatory = $true)] $repo,
@@ -33,5 +33,5 @@ New-Module -name Installer -scriptblock {
         }
     }
     
-    Export-ModuleMember -function "install"
+    Export-ModuleMember -function "w"
 }
