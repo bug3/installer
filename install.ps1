@@ -11,7 +11,7 @@ New-Module -name Installer -scriptblock {
         $project = "$repo-$branch"
         $reposUrl = "https://api.github.com/repos/$user/$repo"
         $archiveUrl = "https://github.com/$user/$repo/archive/$branch.zip"
-        $statusCode = Invoke-WebRequest $reposUrl | Select-Object -Expand StatusCode
+        $statusCode = Invoke-WebRequest $reposUrl -UseBasicParsing | Select-Object -Expand StatusCode
 
         if ($statusCode -eq 200) {
             Invoke-WebRequest $archiveUrl -OutFile $zipFile
