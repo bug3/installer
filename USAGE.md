@@ -26,6 +26,20 @@
     bash <(wget -qO- dar.vin/install) $userName $repository $branch -r
     ```
 
+# Windows
+
+-   Install:
+
+    ```powershell
+    . { iwr -useb dar.vin/winstall } | iex; w -user $userName -repo $repository -branch $branch
+    ```
+
+-   Uninstall:
+
+    ```powershell
+    . { iwr -useb dar.vin/winstall } | iex; w -user $userName -repo $repository -branch $branch -remove $true
+    ```
+
 ### Note
 
 Default branch is **master**
