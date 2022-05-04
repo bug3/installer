@@ -1,6 +1,6 @@
 # installer
 
-installer is a script for setup quickly. Works like an on/off button.
+installer is a tool for setup quickly.
 
 ## Requirements
 
