@@ -59,7 +59,7 @@ if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
         fi
 
         if /bin/bash setup.sh; then
-            echo "$repo installed successfully"
+            successMessage "$repo installed successfully"
         else
             cd ..
             rm -r $repo-$branch
@@ -67,7 +67,7 @@ if [[ ($# -eq 2 || $# -eq 3) || ($# -eq 4 && $isThereRemove == true) ]]; then
         fi
     else
         if /bin/bash setup.sh -r; then
-            echo "$repo uninstalled successfully"
+            successMessage "$repo uninstalled successfully"
         else
             cd ..
             rm -r $repo-$branch
