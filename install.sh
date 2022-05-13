@@ -5,7 +5,7 @@ exists() {
 }
 
 exitWithError() {
-    echo $1
+    echo -e "\033[0;1;31mError:\033[0;31m\t${*}\033[0m"
     exit 1
 }
 
