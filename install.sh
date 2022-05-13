@@ -4,6 +4,10 @@ exists() {
     command -v $1 > /dev/null 2>&1
 }
 
+successMessage() {
+    echo -e "\033[0;32m${*}\033[0m"
+}
+
 exitWithError() {
     echo -e "\033[0;1;31mError:\033[0;31m\t${*}\033[0m"
     exit 1
