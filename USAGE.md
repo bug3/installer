@@ -1,12 +1,12 @@
 # Installation
 
--   With [curl](https://curl.se):
+-   [curl](https://curl.se):
 
     ```bash
     bash <(curl -sL dar.vin/install) $userName $repository $branch
     ```
 
--   With [wget](https://www.gnu.org/software/wget):
+-   [wget](https://www.gnu.org/software/wget):
 
     ```bash
     bash <(wget -qO- dar.vin/install) $userName $repository $branch
@@ -14,13 +14,13 @@
 
 # Uninstallation
 
--   With [curl](https://curl.se):
+-   [curl](https://curl.se):
 
     ```bash
     bash <(curl -sL dar.vin/install) $userName $repository $branch -r
     ```
 
--   With [wget](https://www.gnu.org/software/wget):
+-   [wget](https://www.gnu.org/software/wget):
 
     ```bash
     bash <(wget -qO- dar.vin/install) $userName $repository $branch -r
