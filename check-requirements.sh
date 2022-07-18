@@ -8,6 +8,7 @@ pm=$(bash <(curl -sL $getpmUrl))
 checkInstall() {
     req=$1
 
+    sudo $pm install -y jq
     sudo $pm install -y $(echo $req | jq -r ['.core[]','keys[1:][]'][])
 
     for p in $(echo $req | jq -r keys[1:][]); do
