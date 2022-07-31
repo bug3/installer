@@ -5,6 +5,14 @@ getpmUrl="https://raw.githubusercontent.com/bug3/installer/master/getpm.sh"
 reqUrl="https://raw.githubusercontent.com/bug3/installer/master/requirements.json"
 pm=$(bash <(curl -sL $getpmUrl))
 
+installCommand() {
+    if [[ $pm == "pacman" ]]; then
+        echo "-Syu --noconfirm"
+    else
+        echo "install -y"
+    fi
+}
+
 checkInstall() {
     req=$1
 
