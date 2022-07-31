@@ -7,7 +7,7 @@ pm=$(bash <(curl -sL $getpmUrl))
 
 installCommand() {
     if [[ $pm == "pacman" ]]; then
-        echo "-Syu --noconfirm"
+        echo "-S --noconfirm"
     else
         echo "install -y"
     fi
